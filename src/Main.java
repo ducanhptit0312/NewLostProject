@@ -3,7 +3,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args){
-        JFrame frame = new JFrame("Java");      //Tạo cửa số
+        JFrame frame = new JFrame("LOST");      //Tạo cửa số
         frame.setSize(1366, 768);
         frame.setBackground(Color.black);
         StartingClass game = new StartingClass();   //
