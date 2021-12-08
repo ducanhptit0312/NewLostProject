@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
+
 public class Main {
     public static void main(String[] args){
         JFrame frame = new JFrame("LOST");      //Tạo cửa số
@@ -15,9 +16,11 @@ public class Main {
         try{
             game.init();
             game.start();
+            game.playSound();
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
 }
+

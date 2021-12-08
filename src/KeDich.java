@@ -30,7 +30,7 @@ public class KeDich {
 
 	}
         
-	public void follow() {      //Đi theo người chơi
+	public void follow() {      // Xuất hiện theo người chơi
 		if (Math.abs(centerX - StartingClass.getNguoiChoi().getCenterX()) >650){      //Hàm getNguoiChoi() trả về đối tượng NguoiChoi, getCenterX() của NguoiChoi trả về tọa độ Ox của người chơi
 			this.movementSpeed = 0;                                     // Cái này tức là cách 1 khoảng nào đó thì quái không đi theo người chơi nữa
 		}
@@ -47,7 +47,6 @@ public class KeDich {
 				this.movementSpeed = -2;
 			}
 		}
-
 	}
         
 	private void checkCollision() {
@@ -59,6 +58,7 @@ public class KeDich {
 	public int getCenterX() {
 		return centerX;
 	}
+
 	public int getCenterY() {
 		return centerY;
 	}
@@ -78,6 +78,7 @@ public class KeDich {
 	public boolean getIsDead(){
 		return isdead;
 	}
+
 	public void setIsDead(boolean s){
 		isdead = s;
 	}

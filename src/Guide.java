@@ -7,7 +7,6 @@ public class Guide{
     void mousePress(MouseEvent e) {
         int mx = e.getX();
         int my = e.getY();
-        
         if (mx>60 && mx<210 && my>350 && my<390) StartingClass.State = "guide";
         else if(mx>20 && mx<170 && my>700 && my<740) StartingClass.State="menu";
     }

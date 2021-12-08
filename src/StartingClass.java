@@ -1,4 +1,7 @@
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -405,6 +408,17 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                 case KeyEvent.VK_CONTROL ->             //Bấm Ctrl
                         ctrl_press = true;
             }
+        }
+    }
+    public void playSound() {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("data/BackgroundMusic.mp3").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch(Exception ex) {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace();
         }
     }
 
