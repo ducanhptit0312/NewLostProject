@@ -1,7 +1,4 @@
 import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -27,8 +24,9 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                         menu,danPhai,danTrai,
 			nhaySangPhai, nhaySangTrai, HinhNen1,HinhNen2, 
                         play,exit,backButton,
-                        guideback,guidefront,guideButton,logo,teamlogo,start,
+                        guideback,guidefront,guideButton,logo,start,
                         deathimg,menubutton,playagain;
+    private Sound  Nhacgame;
 	private static HinhNen bg1, bg2,bg3,bg4;
 	public Animation diSangPhai;
     public Animation diSangTrai;
@@ -67,7 +65,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                 
 		setFocusable(true);
 		addKeyListener(this);
-                addMouseListener(this);
+        addMouseListener(this);
                 
 		// tải vào các ảnh
 
@@ -85,6 +83,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                     tilerock = ImageIO.read(new File("data/tilerock.png"));//ĐÁ
 
                     danPhai = ImageIO.read(new File("data/Dan/danPhai.png"));       
+
                     danTrai = ImageIO.read(new File("data/Dan/danTrai.png"));
                 
                     //Hoạt ảnh của nhân vật
@@ -92,12 +91,13 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                     c0= ImageIO.read(new File("data/DiChuyen/Phai/1.png"));
                     
                     s0 = ImageIO.read(new File("data/DiChuyen/Trai/1.png"));
-                
+                    //Nhạc game
+                    Nhacgame = new Sound(new File("data/BackgroundMusic.wav"));
+
                     // Menu Images // Lấy ảnh liên quan đến menu
                     
                     menu = ImageIO.read(new File("data/menu.png"));
                     logo= ImageIO.read(new File("data/logo.png"));
-                    teamlogo = ImageIO.read(new File("data/teamlogo.png"));
                     play= ImageIO.read(new File("data/play.png"));
                     exit= ImageIO.read(new File("data/exit.png"));
                     guideButton= ImageIO.read(new File("data/guideButton.png"));
@@ -149,11 +149,13 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                 NguoiChoi = new NguoiChoi();                    //Tạo đối tượng NguoiChoi(người chơi)
                 MENU = new Menu();                      //
                 GUIDE= new Guide();                     //
-                Chet = new GameOver();                    //Tạo các đối tượng
-                
+                Chet = new GameOver();           //Tạo các đối tượng
+
+                Nhacgame.play();
                 // Initialize Tiles
                 try {
-                    loadMap();        //Tải map
+                    loadMap();//Tải map
+
                 } 
                 catch (IOException e) {
                     e.printStackTrace();
@@ -269,7 +271,6 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                     g.drawImage(play,60,250,this);
                     g.drawImage(guideButton,60,300, this);
                     g.drawImage(exit,60,350,this);
-                    g.drawImage(teamlogo,60,680,this);
                     }
                     catch(Exception e) {
                         e.printStackTrace();
@@ -298,9 +299,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                     hienThiDan(g);
                     paintEnemies(g);
                     g.drawImage(currentSprite, NguoiChoi.getCenterX() - 61,NguoiChoi.getCenterY() - 63, this);
-                       
                     break;
-                    
             }
 	}
         
@@ -408,17 +407,6 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                 case KeyEvent.VK_CONTROL ->             //Bấm Ctrl
                         ctrl_press = true;
             }
-        }
-    }
-    public void playSound() {
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("data/BackgroundMusic.mp3").getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch(Exception ex) {
-            System.out.println("Error with playing sound.");
-            ex.printStackTrace();
         }
     }
 

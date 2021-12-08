@@ -16,7 +16,6 @@ public class Main {
         try{
             game.init();
             game.start();
-            game.playSound();
         }
         catch (Exception e){
             e.printStackTrace();
