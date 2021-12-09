@@ -207,7 +207,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
 			for (int i = 0; i < dan.size(); i++) {
 				Dan p = (Dan) dan.get(i);
 				if (p.isVisible()) {
-                    tiengban.playloop();
+//                    tiengban.playloop();
 					p.update();
 				} else {
 					dan.remove(i);
