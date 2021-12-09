@@ -151,7 +151,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                 GUIDE= new Guide();                     //
                 Chet = new GameOver();           //Tạo các đối tượng
 
-                Nhacgame.play();
+                Nhacgame.playloop();
                 // Initialize Tiles
                 try {
                     loadMap();//Tải map
@@ -339,42 +339,42 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
             g.drawImage(tile.getTileImage(), tile.getTileX(), tile.getTileY(), this);
         }
 	}
-        private void loadMap() throws IOException {
-            ArrayList<String> lines = new ArrayList<>();
-            int width = 0;
+    private void loadMap() throws IOException {
+        ArrayList<String> lines = new ArrayList<>();
+        int width = 0;
 
-            BufferedReader reader = new BufferedReader(new FileReader("data/map1.txt"));
-            while (true) {
-                String line = reader.readLine();
-                // no more lines to read
-                if (line == null) {
-                    reader.close();
-                    break;
-                }
-                if (!line.startsWith("!")) {                //Các dòng bắt đầu = ! thì không đọc
-                    lines.add(line);                        //Cho thêm vào ArayList
-                    width = Math.max(width, line.length()); //Chiều dài của string mô tả nền trong file
-
-                }
+        BufferedReader reader = new BufferedReader(new FileReader("data/map1.txt"));
+        while (true) {
+            String line = reader.readLine();
+            // no more lines to read
+            if (line == null) {
+                reader.close();
+                break;
             }
+            if (!line.startsWith("!")) {                //Các dòng bắt đầu = ! thì không đọc
+                lines.add(line);                        //Cho thêm vào ArayList
+                width = Math.max(width, line.length()); //Chiều dài của string mô tả nền trong file
 
-            for (int n = 0; n < 21; n++) {      //Tối thiểu 22 dòng (cái này là để vừa vào màn hình)
-                String line = lines.get(n);    //Lấy ra từng dòng trong arrayList lines
-                for (int m = 0; m < width; m++) {       //Xét dọc map (lấy độ dài dòng dài nhất)
+            }
+        }
 
-                    if (m < line.length()) {            //Chỉ dọc map có dòng dài dòng ngắn (chỉ xet độ dài dòng hiện tại)
-                        char ch = line.charAt(m);
-                        if (ch == '*'){                 // * là quái vật
-                            KeDich.keDich.add(new KeDich(m*40, n*40-80));    // Hai thông số là tọa độ x, y của quái vật
-                        }
-                        else{                           //Các ô khác được phân số, ứng với mỗi số => loại gạch
-                            Tile t = new Tile(m, n, Character.getNumericValue(ch));   //Tham số 3 là số trong file txt <=> loại gạch
-                            tilearray.add(t);
-                        }
+        for (int n = 0; n < 21; n++) {      //Tối thiểu 22 dòng (cái này là để vừa vào màn hình)
+            String line = lines.get(n);    //Lấy ra từng dòng trong arrayList lines
+            for (int m = 0; m < width; m++) {       //Xét dọc map (lấy độ dài dòng dài nhất)
+
+                if (m < line.length()) {            //Chỉ dọc map có dòng dài dòng ngắn (chỉ xet độ dài dòng hiện tại)
+                    char ch = line.charAt(m);
+                    if (ch == '*'){                 // * là quái vật
+                        KeDich.keDich.add(new KeDich(m*40, n*40-80));    // Hai thông số là tọa độ x, y của quái vật
                     }
-
+                    else{                           //Các ô khác được phân số, ứng với mỗi số => loại gạch
+                        Tile t = new Tile(m, n, Character.getNumericValue(ch));   //Tham số 3 là số trong file txt <=> loại gạch
+                        tilearray.add(t);
+                    }
                 }
+
             }
+        }
     }
     private void themFrameVaoAnimation(Animation A, String path, int soLuong, int t) throws IOException{ //t là thời gian 1 khung hình
         for(int i = 1; i<= soLuong; i++){

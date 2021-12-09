@@ -21,8 +21,6 @@ public class Animation {
             Index = 0;
         }
     }
-
-
     public synchronized void addFrame(BufferedImage image, long a) { //Thêm ảnh vào trong tập hoạt ảnh
         sumLength += a;                                      //Hoạt ảnh càng ngày càng dài ra
         frames.add(new Anh(image, sumLength));                //ArrayList frame

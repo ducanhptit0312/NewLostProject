@@ -21,7 +21,7 @@ public class Dan { //Đạn bắn ra từ người chơi
 	public void update(){
 		x += speedX;
 		r.setBounds(x, y, 10, 5);
-		if (x > 1920 || x<0){               //Ra khỏi màn hình thì bỏ đi, hiển thị làm gì
+		if (x > 1920 || x<0){               //Ra khỏi màn hình thì bỏ đi
 			visible = false;
 			r = null;
 		}

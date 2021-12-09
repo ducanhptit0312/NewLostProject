@@ -5,7 +5,7 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class Sound {
-    private Clip clip;
+    private Clip wav;
 
     public Sound(File path){
         try{
@@ -22,21 +22,27 @@ public class Sound {
                     false
             );
             AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
-            clip = AudioSystem.getClip();
-            clip.open(dais);
+            wav = AudioSystem.getClip();
+            wav.open(dais);
         }
         catch(Exception e){
 
         }
     }
     public void play(){
-        if(clip !=null){
+        if(wav !=null){
             stop();
-            clip.setFramePosition(0);
-            clip.start();
+            wav.setFramePosition(0);
+            wav.start();
+        }
+    }
+    public void playloop(){
+        if (wav !=null){
+            wav.setFramePosition(0);
+            wav.start();
         }
     }
     public void stop(){
-        if(clip.isRunning()) clip.stop();
+        if(wav.isRunning()) wav.stop();
     }
 }
