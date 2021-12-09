@@ -7,7 +7,7 @@ public class NguoiChoi {
     final int JUMPSPEED = -17;
     final int MOVESPEED = 5;
 
-    private int centerX = 400;              //Tọa độ của nhân vật (x theo chiều ngang, y theo chiều dọc)
+    private int centerX = 450;              //Tọa độ của nhân vật (x theo chiều ngang, y theo chiều dọc)
     private int centerY = -560;
     private boolean jumped = false;             //Nhảy?
     private boolean huongSangTrai = false;         //Sang trái?

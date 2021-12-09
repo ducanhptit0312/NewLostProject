@@ -26,7 +26,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                         play,exit,backButton,
                         guideback,guidefront,guideButton,logo,start,
                         deathimg,menubutton,playagain;
-    private Sound  Nhacgame,tiengban;
+    private Sound  Nhacgame,tiengban,deatheffect;
 	private static HinhNen bg1, bg2,bg3,bg4;
 	public Animation diSangPhai;
     public Animation diSangTrai;
@@ -94,7 +94,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                     //Nhạc game
                     Nhacgame = new Sound(new File("data/BackgroundMusic.wav"));
                     tiengban = new Sound(new File("data/shoteffect.wav"));
-
+                    deatheffect = new Sound(new File("data/deatheffect.wav"));
                     // Menu Images // Lấy ảnh liên quan đến menu
                     
                     menu = ImageIO.read(new File("data/menu.png"));
@@ -185,75 +185,73 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
 			}
 		}
     }
-        
-        public void gameUpdate(){
-                        
-                        NguoiChoi.update();
-                        bg1.update();
-			bg2.update();
-                        bg3.update();
-                        bg4.update();
-                        KeDich.update();
-                        updateTiles();
-                        
-                        ////Của kẻ địch
-                        qv1_trai.update(50);
-                        qv1_phai.update(50);
-                        //....
-                        //....
-                        /////////////////
 
-			ArrayList dan = NguoiChoi.getDan();
-			for (int i = 0; i < dan.size(); i++) {
-				Dan p = (Dan) dan.get(i);
-				if (p.isVisible()) {
+    public void gameUpdate(){
+
+        NguoiChoi.update();
+        bg1.update();
+        bg2.update();
+        bg3.update();
+        bg4.update();
+        KeDich.update();
+        updateTiles();
+
+        ////Của kẻ địch
+        qv1_trai.update(50);
+        qv1_phai.update(50);
+        //....
+        //....
+        /////////////////
+
+        ArrayList dan = NguoiChoi.getDan();
+        for (int i = 0; i < dan.size(); i++) {
+            Dan p = (Dan) dan.get(i);
+            if (p.isVisible()) {
 //                    tiengban.playloop();
-					p.update();
-				} else {
-					dan.remove(i);
-				}
-			}
-                        
-                        for (int i = 0; i < KeDich.keDich.size(); i++){
-                            if (KeDich.keDich.get(i).getIsDead())
-                                KeDich.keDich.remove(i);
-                        }
-                
-                        if (NguoiChoi.isJumped() && NguoiChoi.getHuongNhin().equals("phai")) {
-				currentSprite = nhaySangPhai;
-			}
-                        else if (NguoiChoi.isJumped() && NguoiChoi.getHuongNhin().equals("trai")) {
-				currentSprite = nhaySangTrai;
-			} 
-                        else if ((NguoiChoi.getHuongNhin().equals("phai")) && (NguoiChoi.getSpeedX() == 0)&& !NguoiChoi.isngoiXuong()){
-                            currentSprite = c0;
-                        }
-                        else if ((NguoiChoi.getHuongNhin().equals("trai")) && (NguoiChoi.getSpeedX() == 0) && !NguoiChoi.isngoiXuong()){
-                            currentSprite = s0;
-                        }
-                        
-                        else {
-                                if (NguoiChoi.getSpeedX()<0){
-                                    anim = diSangTrai;
-                                }
-                                else if (NguoiChoi.getSpeedX()>0){
-                                    anim = diSangPhai;
-                                }
-                                else if (NguoiChoi.isngoiXuong() && NguoiChoi.getHuongNhin().equals("phai")){
-                                    anim = ngoiPhai;
-                                }
-                                else if (NguoiChoi.isngoiXuong() && NguoiChoi.getHuongNhin().equals("trai")){
-                                    anim = ngoiTrai;
-                                }
-				currentSprite = anim.getImage();
-                                anim.update(10);
-			}
-                        
-                        
-                        if (NguoiChoi.getCenterY()>1400){
-                            State = "dead";
-                        }
+                p.update();
+            } else {
+                dan.remove(i);
+            }
         }
+
+        for (int i = 0; i < KeDich.keDich.size(); i++){
+            if (KeDich.keDich.get(i).getIsDead())
+                KeDich.keDich.remove(i);
+        }
+
+        if (NguoiChoi.isJumped() && NguoiChoi.getHuongNhin().equals("phai")) {
+            currentSprite = nhaySangPhai;
+        }
+        else if (NguoiChoi.isJumped() && NguoiChoi.getHuongNhin().equals("trai")) {
+            currentSprite = nhaySangTrai;
+        }
+        else if ((NguoiChoi.getHuongNhin().equals("phai")) && (NguoiChoi.getSpeedX() == 0)&& !NguoiChoi.isngoiXuong()){
+            currentSprite = c0;
+        }
+        else if ((NguoiChoi.getHuongNhin().equals("trai")) && (NguoiChoi.getSpeedX() == 0) && !NguoiChoi.isngoiXuong()){
+            currentSprite = s0;
+        }
+
+        else {
+            if (NguoiChoi.getSpeedX()<0){
+                anim = diSangTrai;
+            }
+            else if (NguoiChoi.getSpeedX()>0){
+                anim = diSangPhai;
+            }
+            else if (NguoiChoi.isngoiXuong() && NguoiChoi.getHuongNhin().equals("phai")){
+                anim = ngoiPhai;
+            }
+            else if (NguoiChoi.isngoiXuong() && NguoiChoi.getHuongNhin().equals("trai")){
+                anim = ngoiTrai;
+            }
+            currentSprite = anim.getImage();
+            anim.update(10);
+        }
+        if (NguoiChoi.getCenterY()>1400){
+            State = "dead";
+        }
+    }
 
 
         @Override
