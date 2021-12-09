@@ -26,7 +26,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                         play,exit,backButton,
                         guideback,guidefront,guideButton,logo,start,
                         deathimg,menubutton,playagain;
-    private Sound  Nhacgame;
+    private Sound  Nhacgame,tiengban;
 	private static HinhNen bg1, bg2,bg3,bg4;
 	public Animation diSangPhai;
     public Animation diSangTrai;
@@ -93,6 +93,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
                     s0 = ImageIO.read(new File("data/DiChuyen/Trai/1.png"));
                     //Nhạc game
                     Nhacgame = new Sound(new File("data/BackgroundMusic.wav"));
+                    tiengban = new Sound(new File("data/shoteffect.wav"));
 
                     // Menu Images // Lấy ảnh liên quan đến menu
                     
@@ -183,7 +184,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
 				e.printStackTrace();
 			}
 		}
-        }
+    }
         
         public void gameUpdate(){
                         
@@ -206,6 +207,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
 			for (int i = 0; i < dan.size(); i++) {
 				Dan p = (Dan) dan.get(i);
 				if (p.isVisible()) {
+                    tiengban.playloop();
 					p.update();
 				} else {
 					dan.remove(i);
@@ -324,6 +326,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
         
         private void hienThiDan(Graphics g){
                     dan = NguoiChoi.getDan();
+
             for (Object o : dan) {
                 Dan p = (Dan) o;
 

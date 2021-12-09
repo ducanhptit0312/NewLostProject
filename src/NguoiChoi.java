@@ -131,7 +131,7 @@ public class NguoiChoi {
             p = new Dan(centerX-5, centerY-5,true);
         else
             p = new Dan(centerX-5, centerY-5,false);
-	dan.add(p);
+	    dan.add(p);
     }
 
     public int getCenterX() {

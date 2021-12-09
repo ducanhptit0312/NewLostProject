@@ -12,9 +12,9 @@ public class Dan { //Đạn bắn ra từ người chơi
 		this.x = startX;
 		this.y = startY;
 		if (huongSangPhai)
-			this.speedX =30;
+			this.speedX = 15;
 		else
-			this.speedX = -30;
+			this.speedX = -15;
 		visible = true;
 		r = new Rectangle(0, 0, 0, 0);
 	}
