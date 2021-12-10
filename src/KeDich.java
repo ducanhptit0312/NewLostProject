@@ -16,10 +16,10 @@ public class KeDich {
 		setCenterX(centerX);
 		setCenterY(centerY);
 	}
-	// Cập nhật hành vi của quái vật theo nhân vật chính
+	// Cập nhật hành vi của quái vật
 	public static void update() {
 		for (KeDich i: keDich) {
-			i.follow();
+			i.follow();// Quái vật theo nhân vật chính
 			i.centerX += i.speedX;
 			i.speedX = i.bg.getSpeedX() * 5 + i.movementSpeed;
 			i.r.setBounds(i.centerX - 30, i.centerY-10, 85, 60);
@@ -37,7 +37,7 @@ public class KeDich {
 			this.movementSpeed = 0;
 		}
 		else {
-			if (StartingClass.getNguoiChoi().getCenterX() >= centerX) {
+			if (StartingClass.getNguoiChoi().getCenterX() >= centerX) {//CenterX của nhân vật lớn hơn của kẻ địch
 				this.huongNhin = "phai";
 				this.movementSpeed = 2;
 			} 
@@ -48,7 +48,7 @@ public class KeDich {
 		}
 	}
         
-	private void checkCollision() {
+	private void checkCollision() {//Nếu va chạm quái vật va chạm với nhân vật thì đưa về trạng thái chết
 		if (r.intersects(NguoiChoi.rect) || r.intersects(NguoiChoi.rect2)){
 			StartingClass.State = "dead";
 		}

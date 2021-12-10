@@ -8,7 +8,7 @@ public class GameOver{       //Lớp này quản lý mành hình hiển thị sa
         int mx = e.getX();              //Cái này là lấy vị trí của chuột
         int my = e.getY();
         StartingClass.restart();//Thua thì sẽ thiết lập lại tất cả thông số
-        if (mx>60 && mx<210 && my>350 && my<390){   //Đây là vị trí click chuột
+        if (mx>60 && mx<210 && my>350 && my<390){   //Đây là các vị trí click chuột
             StartingClass.State = "menu";
         }
         else if(mx>60 && mx<210 && my>400 && my<440){
