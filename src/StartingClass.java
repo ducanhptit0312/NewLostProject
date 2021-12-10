@@ -19,7 +19,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
     private BufferedImage currentSprite, c0, s0,
             menu, danPhai, danTrai,
             nhaySangPhai, nhaySangTrai, HinhNen1, HinhNen2,
-            play, exit, logo, start,
+            play, exit, start,
             deathimg, menubutton, playagain;
     private AmThanh Nhacgame, tiengban, deatheffect;//Hiệu ứng khi chết chưa ổn
     private static HinhNen bg1, bg2, bg3, bg4;
@@ -87,7 +87,6 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
         // Menu Images // Lấy ảnh liên quan đến menu
 
         menu = ImageIO.read(new File("data/menu.png"));
-        logo = ImageIO.read(new File("data/logo.png"));
         play = ImageIO.read(new File("data/play.png"));
         exit = ImageIO.read(new File("data/exit.png"));
 
@@ -215,7 +214,6 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
             case "menu":        // Đây là ngoài menu
                 try {
                     g.drawImage(menu, (int) MENU.X, (int) MENU.Y, this);
-                    g.drawImage(logo, 510, 32, this);
                     g.drawImage(play, 60, 250, this);
                     g.drawImage(exit, 60, 300, this);
                 } catch (Exception e) {
