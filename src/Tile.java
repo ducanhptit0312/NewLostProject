@@ -18,7 +18,7 @@ public class Tile {
         tileY = y*40;
         type = typeint;
         r = new Rectangle();    
-        if (type == 2)
+        if (type == 2)					//Tùy từng loại => ảnh tile khác nhau
             tileImage = StartingClass.grasstop; 
         else if (type == 3)
             tileImage = StartingClass.tiledirt;
@@ -39,37 +39,19 @@ public class Tile {
         tileX += speedX;  
         r.setBounds(tileX, tileY, 40, 40);
         
-        if (r.intersects(NguoiChoi.yellowRed) && type != 0) {
-                                
-				checkVerticalCollision(NguoiChoi.rect, NguoiChoi.rect2);
-				checkSideCollision(NguoiChoi.footleft, NguoiChoi.footright);
+        if (r.intersects(NguoiChoi.yellowRed) && type != 0) {					//Chạm vào hitbox
+				checkVerticalCollision(NguoiChoi.rect, NguoiChoi.rect2)		//Xét dọc
+				checkSideCollision(NguoiChoi.footleft, NguoiChoi.footright);	//Xét ngang
 			}
-        for (KeDich i: KeDich.keDich){
-            if(r.intersects(i.r)  && ( type == 2 || type == 3 || type == 6 )){
-                i.setSpeedX(0);
-                if (i.getCenterX()<tileX)
-                    i.setCenterX(tileX-55);
+        for (KeDich i: KeDich.keDich){								//Chạm vào kẻ địch
+            if(r.intersects(i.r)  && ( type == 2 || type == 3 || type == 6 )){			
+                i.setSpeedX(0);									//Tốc độ kẻ địch = 0
+                if (i.getCenterX()<tileX)							//Cố định vị trí
+                    i.setCenterX(tileX-55);							//Không có cái này thì quái chui vào tile mới dừng
                 else if (i.getCenterX()>tileX)
                     i.setCenterX(tileX+56);
             }
         }
-    }
-    public int getTileX() {
-        return tileX;
-    }
-    public int getTileY() {
-        return tileY;
-    }
-
-    public Rectangle getRectangle(){
-        return r;
-    }
-    public int getType(){
-        return type;
-    }
-
-    public Image getTileImage() {
-        return tileImage;
     }
 
     public void checkVerticalCollision(Rectangle rtop, Rectangle rbot) {    //Va chạm theo chiều dọc
@@ -99,4 +81,25 @@ public class Tile {
             }
         }
     }
+	
+    //Lấy biến nếu cần
+    public int getTileX() {
+        return tileX;
+    }
+    public int getTileY() {
+        return tileY;
+    }
+
+    public Rectangle getRectangle(){
+        return r;
+    }
+    public int getType(){
+        return type;
+    }
+
+    public Image getTileImage() {
+        return tileImage;
+    }
+
+    
 }
