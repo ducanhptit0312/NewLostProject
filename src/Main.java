@@ -2,16 +2,16 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Main {
-    public static void main(String[] args){
-        JFrame frame = new JFrame("LOST");      //Tạo cửa số
+    public static void main(String[] args){     
+        JFrame frame = new JFrame("LOST");
         frame.setSize(1366, 768);
         frame.setBackground(Color.black);
-        StartingClass game = new StartingClass();   //
+        StartingClass game = new StartingClass();
         frame.add(game);
         //frame.setUndecorated(true);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Thoát frame thì sẽ thoát chương trình
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         try{
             game.init();
             game.start();
