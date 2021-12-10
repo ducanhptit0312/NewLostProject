@@ -16,7 +16,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
     private boolean ctrl_press;
     ArrayList dan = new ArrayList<>();
     private static NguoiChoi NguoiChoi;
-    private BufferedImage currentSprite, c0, s0,
+    private BufferedImage currentSprite, d1, d2,
             menu, danPhai, danTrai,
             nhaySangPhai, nhaySangTrai, HinhNen1, HinhNen2,
             play, exit, start,
@@ -78,13 +78,13 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
         danTrai = ImageIO.read(new File("data/Dan/danTrai.png"));
 
         //Hoạt ảnh của nhân vật trái phải
-        c0 = ImageIO.read(new File("data/DiChuyen/Phai/1.png"));
-        s0 = ImageIO.read(new File("data/DiChuyen/Trai/1.png"));
+        d1 = ImageIO.read(new File("data/DiChuyen/Phai/1.png"));    //Đứng im nhìn phải
+        d2 = ImageIO.read(new File("data/DiChuyen/Trai/1.png"));    //Đứng im nhìn trái, dùng để khi hoạt hình dừng đột ngột, chuyển về ảnh này
         //Nhạc game
         Nhacgame = new AmThanh(new File("data/BackgroundMusic.wav"));
         tiengban = new AmThanh(new File("data/shoteffect.wav"));//
         deatheffect = new AmThanh(new File("data/deatheffect.wav"));
-        // Menu Images // Lấy ảnh liên quan đến menu
+        // Lấy ảnh liên quan đến menu
 
         menu = ImageIO.read(new File("data/menu.png"));
         play = ImageIO.read(new File("data/play.png"));
@@ -113,7 +113,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
         diSangTrai = new Animation(false);
         themFrameVaoAnimation(diSangTrai, "data/DiChuyen/Trai/", 12, 50);
         anim = diSangPhai;
-        currentSprite = c0;  //Bat dau nhan vat nhin sang phai
+        currentSprite = d1;  //Bat dau nhan vat nhin sang phai
     }
     public void start() {
         bg1 = new HinhNen(0, 0);             //Hình nền trong trò chơi
@@ -183,9 +183,9 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
         } else if (NguoiChoi.isJumped() && NguoiChoi.getHuongNhin().equals("trai")) {
             currentSprite = nhaySangTrai;
         } else if ((NguoiChoi.getHuongNhin().equals("phai")) && (NguoiChoi.getSpeedX() == 0) && !NguoiChoi.isngoiXuong()) {
-            currentSprite = c0;
+            currentSprite = d1;
         } else if ((NguoiChoi.getHuongNhin().equals("trai")) && (NguoiChoi.getSpeedX() == 0) && !NguoiChoi.isngoiXuong()) {
-            currentSprite = s0;
+            currentSprite = d2;
         } else {
             if (NguoiChoi.getSpeedX() < 0) {
                 anim = diSangTrai;
@@ -373,7 +373,6 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
         }
     }
 
-    //Các phương thức ghi đè
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -385,7 +384,7 @@ public class StartingClass extends JPanel implements Runnable, KeyListener, Mous
     }
 
     @Override
-    public void mousePressed(MouseEvent me) {           //Bấm chuột vào các nút
+    public void mousePressed(MouseEvent me) {        
         switch (State) {
             case "dead":
                 Chet.mousePress(me);
