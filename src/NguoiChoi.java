@@ -16,12 +16,10 @@ public class NguoiChoi {
     private int speedY = 0;                     //Tốc độ theo chiều dọc
     public static Rectangle rect = new Rectangle(0, 0, 0, 0);	//Rect dưới để xét va chạm bên trên (đầu nhân vật)
     public static Rectangle rect2 = new Rectangle(0, 0, 0, 0);		//Xét va chạm bên dưới (Hai cái này lồng nhau, chỉ khác điểm đặt x, y để xét va chạm cho đúng
-    public static Rectangle yellowRed = new Rectangle(0, 0, 0, 0);	//Hitbox (hình này bao quanh người chơi => chủ động xét để cho người chơi không bị đâm vào vật rồi mới xét)
-    
-    public static Rectangle footleft = new Rectangle(0,0,0,0);
+    public static Rectangle yellowRed = new Rectangle(0, 0, 0, 0);	//Hitbox (hình này bao quanh người chơi => chủ động xét để cho người chơi không bị đâm vào vật rồi mới xét
+    public static Rectangle footleft = new Rectangle(0,0,0,0);		//Dùng 2 cái 2 chân xét va chạm sẽ không phải sợ ảnh nhân vật bị chồng chéo, chui vào trong các đối tượng khác
     public static Rectangle footright = new Rectangle(0,0,0,0);
-    
-    
+
     private final HinhNen bg1 = StartingClass.getHN1();
     private final HinhNen bg2 = StartingClass.getHN2();
     private final HinhNen bg3 = StartingClass.getHN3();
