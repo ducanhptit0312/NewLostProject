@@ -2,8 +2,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class NguoiChoi {
-
-    // Khởi tạo jumpspeed và movespeed
+	
     final int JUMPSPEED = -17;
     final int MOVESPEED = 5;
     private int centerX = 450;              //Tọa độ của nhân vật (x theo chiều ngang, y theo chiều dọc)
@@ -15,9 +14,9 @@ public class NguoiChoi {
     private static String huongNhin = "phai";  //Hướng nhìn
     private int speedX = 0;                     //Tốc độ theo chiều ngang
     private int speedY = 0;                     //Tốc độ theo chiều dọc
-    public static Rectangle rect = new Rectangle(0, 0, 0, 0);
-    public static Rectangle rect2 = new Rectangle(0, 0, 0, 0);
-    public static Rectangle yellowRed = new Rectangle(0, 0, 0, 0);
+    public static Rectangle rect = new Rectangle(0, 0, 0, 0);	//Rect dưới để xét va chạm bên trên (đầu nhân vật)
+    public static Rectangle rect2 = new Rectangle(0, 0, 0, 0);		//Xét va chạm bên dưới (Hai cái này lồng nhau, chỉ khác điểm đặt x, y để xét va chạm cho đúng
+    public static Rectangle yellowRed = new Rectangle(0, 0, 0, 0);	//Hitbox (hình này bao quanh người chơi => chủ động xét để cho người chơi không bị đâm vào vật rồi mới xét)
     
     public static Rectangle footleft = new Rectangle(0,0,0,0);
     public static Rectangle footright = new Rectangle(0,0,0,0);
@@ -30,23 +29,23 @@ public class NguoiChoi {
 
     private final ArrayList<Dan> dan = new ArrayList<>();
 
-    public void update() {
-        if (speedX == 0){
-            bg1.setSpeedX(0);
+    public void update() {				//Cập nhật vị trí nhân vật
+        if (speedX == 0){				//Đang đứng yên
+            bg1.setSpeedX(0);				//Ảnh nền tương ứng cũng đứng yên
             bg2.setSpeedX(0);
             bg3.setSpeedX(0);
             bg4.setSpeedX(0);
         }
         
-        if (centerX <= 800 && speedX > 0) {
-            centerX += speedX;
+        if (centerX <= 800 && speedX > 0) {		//Tương tự các ở lớp kẻ địch
+            centerX += speedX;				//Di chuyển chính là cộng trừ tọa độ X với tốc độ
         }
-        if (centerX >=400 && speedX<0){
-            centerX += speedX;
+        if (centerX >=400 && speedX<0){			//Có giới hạn centerX, tọa độ nhân, vật trong khoảng phù hợp với độ phân giải, ko thì nhân vật sẽ chạy ra khỏi màn hình 
+            centerX += speedX;				//Đến giới hạn thì ko đổi X nữa, animation có thể vẫn chạy
         }
         
-        if (speedX > 0 && centerX > 800) {
-            bg1.setSpeedX(-MOVESPEED / 5);
+        if (speedX > 0 && centerX > 800) {		//Khi nhân vật đến cạnh màn hình
+            bg1.setSpeedX(-MOVESPEED / 5);		//Các hình nền sẽ bắt đầu được gán cho vận tốc => di chuyển tương đối
             bg2.setSpeedX(-MOVESPEED / 5);
             bg3.setSpeedX(-MOVESPEED / 5);
             bg4.setSpeedX(-MOVESPEED / 5);
@@ -64,7 +63,7 @@ public class NguoiChoi {
         if (speedY > 3){
             jumped = true;
         }
-
+	//Thay đổi tọa độ các hình chữ nhật tương ứng
         rect.setRect(centerX -55, centerY - 63	, 35, 70);
         rect2.setRect(rect.getX(), rect.getY() + 70, 35, 70);
         yellowRed.setRect(centerX - 92, centerY - 80, 110, 180);
@@ -85,7 +84,7 @@ public class NguoiChoi {
         }
     }
 
-    public void stopRight() {
+    public void stopRight() {				//Sau khi chơi thử thì thấy khi bấm liên tục phím < > thì nhân vật bị lag, lê 1 đoạn mới dừng => thêm hàm phanh
         setHuongSangPhai(false);
         stop();
     }
@@ -107,13 +106,13 @@ public class NguoiChoi {
         }
     }
 
-    public void jump() {//nhảy
+    public void jump() {		//nhảy
         if (!jumped) {
             speedY = JUMPSPEED;
             jumped = true;
         }
     }
-    public void shoot() {
+    public void shoot() {		//Bắn
         Dan p;
         if (getHuongNhin().equals("phai"))
             p = new Dan(centerX-5, centerY-5,true);
