@@ -16,7 +16,7 @@ public class HinhNen {
 			X = -1920*2;
 		}
 	}
-        //Các hàm để lấy giá trị các biến
+	//Các hàm để lấy giá trị các biến
 	public int getX() {
 		return X;
 	}
@@ -28,8 +28,6 @@ public class HinhNen {
 	public int getSpeedX() {
 		return speedX;
 	}
-
-
 	public void setSpeedX(int speedX) {
 		this.speedX = speedX;
 	}

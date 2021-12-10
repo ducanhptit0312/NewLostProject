@@ -21,7 +21,7 @@ public class Dan { //Đạn bắn ra từ người chơi
 	public void update(){
 		x += speedX;
 		r.setBounds(x, y, 10, 5);
-		if (x > 1920 || x<0){               //Ra khỏi màn hình thì bỏ đi
+		if (x > 1460 || x<0){               //Ra khỏi màn hình thì bỏ đi
 			visible = false;
 			r = null;
 		}
@@ -55,18 +55,14 @@ public class Dan { //Đạn bắn ra từ người chơi
 			}
 		}
 	}
-
+//Các hàm lấy giá trị khi cần
 	public int getX() {
 		return x;
 	}
-
 	public int getY() {
 		return y;
 	}
-
 	public boolean isVisible() {
 		return visible;
 	}
-
-
 }

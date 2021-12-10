@@ -45,20 +45,18 @@ public class Tile {
 				checkSideCollision(NguoiChoi.footleft, NguoiChoi.footright);
 			}
         for (KeDich i: KeDich.keDich){
-                if(r.intersects(i.r)  && ( type == 2 || type == 3 || type == 6 )){
-                        i.setSpeedX(0);
-                        if (i.getCenterX()<tileX)
-                            i.setCenterX(tileX-55);
-                        else if (i.getCenterX()>tileX)
-                            i.setCenterX(tileX+56);
-                    }
+            if(r.intersects(i.r)  && ( type == 2 || type == 3 || type == 6 )){
+                i.setSpeedX(0);
+                if (i.getCenterX()<tileX)
+                    i.setCenterX(tileX-55);
+                else if (i.getCenterX()>tileX)
+                    i.setCenterX(tileX+56);
             }
+        }
     }
-    
-   public int getTileX() {
+    public int getTileX() {
         return tileX;
     }
-
     public int getTileY() {
         return tileY;
     }
@@ -75,9 +73,8 @@ public class Tile {
     }
 
     public void checkVerticalCollision(Rectangle rtop, Rectangle rbot) {    //Va chạm theo chiều dọc
-        if ( type == 2 || type == 3 || type == 6 ){     
-            if (rtop.intersects(r)) {                       
-                NguoiChoi.setCenterY(tileY+100);            //Xóa cũng được
+        if ( type == 2 || type == 3 || type == 6 ){
+            if (rtop.intersects(r)) {
                 NguoiChoi.setSpeedY(-NguoiChoi.JUMPSPEED);      //Tốc độ khi chạm vào (âm là hướng ngược lại => đụng đầu rơi xuống
             }
 
@@ -88,20 +85,18 @@ public class Tile {
             }
         }
     }
-    
-     public void checkSideCollision(Rectangle leftfoot, Rectangle rightfoot) {  //Kiểm tra va chạm theo chiều ngang
+    public void checkSideCollision(Rectangle leftfoot, Rectangle rightfoot) {  //Kiểm tra va chạm theo chiều ngang
         if (type == 2 || type == 3 || type == 6 ){
-            
-           if (leftfoot.intersects(r)) {
+
+            if (leftfoot.intersects(r)) {
                 NguoiChoi.setCenterX(tileX + 100);      //Đi đến từ bên phải, cứ đến thì sẽ bị dịch về bên phải => ko vượt qua được
                 NguoiChoi.setSpeedX(0);                 //Dừng lại
             }
-            
+
             else if (rightfoot.intersects(r)) {     //Ngược lại
                 NguoiChoi.setCenterX(tileX + 15);
                 NguoiChoi.setSpeedX(0);
             }
         }
     }
-
 }

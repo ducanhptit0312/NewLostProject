@@ -3,10 +3,9 @@ import java.util.ArrayList;
 
 public class NguoiChoi {
 
-    // Constants are Here
+    // Khởi tạo jumpspeed và movespeed
     final int JUMPSPEED = -17;
     final int MOVESPEED = 5;
-
     private int centerX = 450;              //Tọa độ của nhân vật (x theo chiều ngang, y theo chiều dọc)
     private int centerY = -560;
     private boolean jumped = false;             //Nhảy?
@@ -14,7 +13,6 @@ public class NguoiChoi {
     private boolean huongSangPhai = false;        //Sang phải?
     private boolean ngoiXuong = false;             //Ngồi ?
     private static String huongNhin = "phai";  //Hướng nhìn
-
     private int speedX = 0;                     //Tốc độ theo chiều ngang
     private int speedY = 0;                     //Tốc độ theo chiều dọc
     public static Rectangle rect = new Rectangle(0, 0, 0, 0);
@@ -59,11 +57,10 @@ public class NguoiChoi {
             bg3.setSpeedX(MOVESPEED / 5);
             bg4.setSpeedX(MOVESPEED / 5);
         }
-        // Updates Y Position
+        // Cập nhật bước nhảy
         centerY += speedY;
-        // Handles Jumping
+        // Xử lý bước nhảy
           speedY += 1;
-
         if (speedY > 3){
             jumped = true;
         }
@@ -74,17 +71,13 @@ public class NguoiChoi {
 
         footleft.setRect(centerX -60, centerY - 33, 5, 95);
         footright.setRect(centerX -20, centerY - 33, 5, 95);
-
-
     }
-
     public void moveRight() {
         huongNhin = "phai";
         if (!ngoiXuong) {
             speedX = MOVESPEED;
         }
     }
-
     public void moveLeft() {
         huongNhin = "trai";
         if (!ngoiXuong) {
@@ -106,25 +99,20 @@ public class NguoiChoi {
         if (!ishuongSangPhai() && !ishuongSangTrai()) {
             speedX = 0;
         }
-
         if (!ishuongSangPhai() && ishuongSangTrai()) {
             moveLeft();
         }
-
         if (ishuongSangPhai() && !ishuongSangTrai()) {
             moveRight();
         }
-
     }
 
-    public void jump() {
+    public void jump() {//nhảy
         if (!jumped) {
             speedY = JUMPSPEED;
             jumped = true;
         }
-
     }
-
     public void shoot() {
         Dan p;
         if (getHuongNhin().equals("phai"))
@@ -133,11 +121,10 @@ public class NguoiChoi {
             p = new Dan(centerX-5, centerY-5,false);
 	    dan.add(p);
     }
-
+    //Các hàm để lấy giá trị các biến
     public int getCenterX() {
         return centerX;
     }
-
     public int getCenterY() {
         return centerY;
     }
@@ -145,63 +132,46 @@ public class NguoiChoi {
     public boolean isJumped() {
         return jumped;
     }
-
     public int getSpeedX() {
         return speedX;
     }
-
-
     public void setCenterX(int centerX) {
         this.centerX = centerX;
     }
-
     public void setCenterY(int centerY) {
         this.centerY = centerY;
     }
-
     public void setJumped(boolean jumped) {
         this.jumped = jumped;
     }
-
     public void setSpeedX(int speedX) {
         this.speedX = speedX;
     }
-
     public void setSpeedY(int speedY) {
         this.speedY = speedY;
     }
-
     public boolean isngoiXuong() {
         return ngoiXuong;
     }
-
     public void setngoiXuong(boolean ngoiXuong) {
         this.ngoiXuong = ngoiXuong;
     }
-
     public boolean ishuongSangPhai() {
         return huongSangPhai;
     }
-
     public void setHuongSangPhai(boolean huongSangPhai) {
         this.huongSangPhai = huongSangPhai;
     }
-
     public boolean ishuongSangTrai() {
         return huongSangTrai;
     }
-
     public void setHuongSangTrai(boolean huongSangTrai) {
         this.huongSangTrai = huongSangTrai;
     }
-
     public ArrayList getDan() {
         return dan;
     }
-
-   
     public static String getHuongNhin(){
         return huongNhin;
     }
-
 }

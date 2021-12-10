@@ -16,8 +16,7 @@ public class KeDich {
 		setCenterX(centerX);
 		setCenterY(centerY);
 	}
-        
-	// Behavioral Methods
+	// Cập nhật hành vi của quái vật theo nhân vật chính
 	public static void update() {
 		for (KeDich i: keDich) {
 			i.follow();
@@ -54,34 +53,27 @@ public class KeDich {
 			StartingClass.State = "dead";
 		}
 	}
-
+	//Các hàm để lấy giá trị các biến
 	public int getCenterX() {
 		return centerX;
 	}
-
 	public int getCenterY() {
 		return centerY;
 	}
-
 	public void setSpeedX(int speedX) {
 		this.speedX = speedX;
 	}
-
 	public void setCenterX(int centerX) {
 		this.centerX = centerX;
 	}
-
 	public void setCenterY(int centerY) {
 		this.centerY = centerY;
 	}
-
 	public boolean getIsDead(){
 		return isdead;
 	}
-
 	public void setIsDead(boolean s){
 		isdead = s;
 	}
-
 }
 
