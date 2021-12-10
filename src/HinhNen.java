@@ -5,7 +5,7 @@ public class HinhNen {
 	public HinhNen(int x, int y){
 		this.X = x;
 		this.Y = y;
-		this.speedX = 0;
+		this.speedX = 0;		//Speed sẽ được dùng để di chuyển nền khi người chơi di chuyển
 	}
 	public void update() {
 		X += speedX;
