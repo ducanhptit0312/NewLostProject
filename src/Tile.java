@@ -40,7 +40,7 @@ public class Tile {
         r.setBounds(tileX, tileY, 40, 40);
         
         if (r.intersects(NguoiChoi.yellowRed) && type != 0) {					//Chạm vào hitbox
-				checkVerticalCollision(NguoiChoi.rect, NguoiChoi.rect2)		//Xét dọc
+				checkVerticalCollision(NguoiChoi.rect, NguoiChoi.rect2);		//Xét dọc
 				checkSideCollision(NguoiChoi.footleft, NguoiChoi.footright);	//Xét ngang
 			}
         for (KeDich i: KeDich.keDich){								//Chạm vào kẻ địch
